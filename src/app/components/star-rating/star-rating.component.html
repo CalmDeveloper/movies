@@ -1,0 +1,3 @@
+<div class="star-wrapper" >
+  <span class="star" *ngFor="let i of stars"  [ngClass]="{'on': i <= (voteAverage), 'off': !(i <= (voteAverage))  }">&#9733;</span>
+</div>

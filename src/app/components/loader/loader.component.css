@@ -1,0 +1,7 @@
+.action-loader {
+  border: 0;
+  position: fixed;
+  top: calc(50vh - 20px);
+  left: calc(50% - 20px);
+  z-index: 99999;
+}

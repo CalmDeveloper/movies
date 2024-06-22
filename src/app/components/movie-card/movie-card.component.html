@@ -1,0 +1,7 @@
+<div class="movie">
+  <img src="{{link}}" (error)="onError($event)" alt="{{movie.title}}"/>
+  <div class="wrapper">
+    <span class="movie-title">{{movie.title}}</span>
+    <app-star-rating [voteAverage]="movie.vote_average"></app-star-rating>
+  </div>
+</div>
