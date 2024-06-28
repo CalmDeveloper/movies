@@ -1,7 +1,7 @@
 <div class="header">
   <div class="nav-menu">
     <div routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
-      <a routerLink="movies">
+      <a routerLink="movies" [queryParams]="{page: 1}">
         <svg fill="#000000" xmlns="http://www.w3.org/2000/svg" width="34px" height="34px" viewBox="0 0 498.631 498.631">
           <g>
             <g id="Layer_8_11_">
@@ -46,14 +46,79 @@
         </svg>
       </a>
     </div>
+
     <div routerLinkActive="active">
-      <a routerLink="movies/top-profit">Top profit</a>
+      <a routerLink="movies" [queryParams]="{page: 1, sort_by: 'popularity.desc'}">Popular</a>
     </div>
     <div routerLinkActive="active">
-      <a routerLink="movies/top-ratings">Top ratings</a>
+      <a routerLink="movies" [queryParams]="{page: 1, sort_by: 'revenue.desc'}">Top profit</a>
     </div>
+    <div routerLinkActive="active">
+      <a routerLink="movies" [queryParams]="{page: 1, sort_by:'vote_count.desc'}">Top ratings</a>
+    </div>
+
+    <mat-icon
+      aria-hidden="false"
+      fontIcon="tune"
+      class="panel-btn"
+      [ngClass]="{'active': filterPanelStateOpened}"
+      (click)="onFilterBtnClick(!filterPanelStateOpened)"
+      matTooltip="Advanced Filtering">
+    </mat-icon>
+    <mat-icon aria-hidden="false"
+       fontIcon="search"
+       class="panel-btn"
+       [ngClass]="{'active': searchPanelStateOpened}"
+       (click)="onSearchBtnClick(!searchPanelStateOpened)"
+       matTooltip="Search by keywords">
+    </mat-icon>
   </div>
 
   <h1>The world of movies</h1>
 
+</div>
+<div id="filter-panel">
+  <div class="filter-container">
+    <div class="flex-container">
+      <ng-select
+                 [items]="sortItems"
+                 bindLabel="name"
+                 bindValue="id"
+                 placeholder="Sort by"
+                 [(ngModel)]="selectedSortParam">
+      </ng-select>
+      <ng-select [items]="genres"
+                 bindLabel="name"
+                 bindValue="id"
+                 [multiple]="true"
+                 [deselectOnClick]="true"
+                 placeholder="Select genres"
+                 maxSelectedItems="3"
+                 [(ngModel)]="selectedGenres">
+      </ng-select>
+
+      <ng-select [items]="countries"
+                 bindLabel="english_name"
+                 bindValue="iso_3166_1"
+                 placeholder="Country"
+                 [(ngModel)]="country">
+      </ng-select>
+
+      <ng-select [items]="years"
+                 bindLabel="name"
+                 bindValue="id"
+                 placeholder="Year"
+                 [(ngModel)]="year">
+      </ng-select>
+
+
+      <button mat-flat-button (click)="applyFilters()">Apply filters</button>
+      <button mat-stroked-button (click)="clearFilters()">Clear filters</button>
+    </div>
+  </div>
+
+</div>
+
+<div id="search-panel">
+  <input name="search" placeholder="Enter a word to search for..." type="text" autocomplete="off" (keypress)="onSearchSubmit($event)" [(ngModel)]="search">
 </div>

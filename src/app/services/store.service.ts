@@ -6,24 +6,25 @@ import {BehaviorSubject} from "rxjs";
 })
 export class StoreService {
   storage = new BehaviorSubject({
-    movies: [],
-    loading: false,
-    getSortParam(state: string) {
-      if (state === '/movies/top-profit') {
-        return 'revenue.desc';
-      } else if (state === '/movies/top-ratings') {
-        return 'vote_count.desc';
-      }
-      return '';
+    moviesData: {
+      page: 1,
+      results: [],
+      total_pages: 0,
+      total_results: 0
     },
-    loadMovies: function (moviesService: any, router: any, update: any) {
-      update(this);
-      this.loading = true;
-      const sortBy = this.getSortParam(router.url)
-      moviesService.getMovies(1, '', sortBy).subscribe(({results, total_results, total_pages, page}: any) => {
-        this.movies = results;
-        this.loading = false;
-        update(this);
+    loading: false,
+    setLoading(cb: any, storeService: any, value: boolean) {
+      this.loading = value
+      cb(storeService, this);
+    },
+    loadMovies: function (moviesService: any, queryParams: any, storeService: any, updateFn: any) {
+      this.setLoading(updateFn, storeService, true);
+      moviesService[queryParams.query ? 'searchByKeywords' : 'getMovies'](queryParams).subscribe((data: any) => {
+        this.moviesData = data
+        this.setLoading(updateFn, storeService, false);
+      },(err: any) => {
+        console.error('Error during loading movies page', err);
+        this.setLoading(updateFn, storeService, false);
       });
     }
   })

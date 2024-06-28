@@ -1,4 +1,24 @@
-/* You can add global styles to this file, and also import other style files */
-
+@import "../node_modules/@ng-select/ng-select/themes/default.theme.css";
 html, body { height: 100%; }
+
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+.ng-select{
+  min-width: 160px;
+}
+.ng-select.ng-select-multiple .ng-select-container .ng-value-container .ng-placeholder {
+  top: unset;
+  padding-bottom: 3px;
+}
+
+ ::-webkit-scrollbar {
+   width: 6px;
+   height: 6px;
+   background: #fff;
+   z-index: 999999;
+ }
+
+ ::-webkit-scrollbar-thumb {
+   border-radius: 5px;
+   background: #9aa6bc;
+   margin: 1px;
+ }

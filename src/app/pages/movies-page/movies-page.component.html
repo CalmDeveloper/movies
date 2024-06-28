@@ -1,2 +1,5 @@
-<app-movies-list [movies]="movies"></app-movies-list>
+<app-movies-list [movies]="movies" *ngIf="movies && movies.length"></app-movies-list>
+<div  class="no-data" *ngIf="(!movies || !movies.length) && !loading"><span class="data-state">No data available</span></div>
+<div  class="data-loading" *ngIf="(!movies || !movies.length) && loading"><span class="data-state">Loading data ...</span></div>
 <app-loader *ngIf="loading"></app-loader>
+<app-paginator></app-paginator>

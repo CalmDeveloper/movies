@@ -1,6 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {urls} from "../../constants";
 import {IMovie} from "../../interfaces";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-movie-card',
@@ -11,7 +12,7 @@ export class MovieCardComponent implements OnInit{
   @Input() movie: IMovie;
   link: string = '';
   defaultLink: string = '';
-  constructor() {}
+  constructor(private router: Router) {}
 
   ngOnInit(): void {
     this.link = urls.miniPoster + this.movie.poster_path;
@@ -21,5 +22,9 @@ export class MovieCardComponent implements OnInit{
   onError($event: ErrorEvent) {
     const imgElem = $event.target as HTMLImageElement;
     imgElem.src = this.defaultLink;
+  }
+
+  onClick() {
+    this.router.navigate([`movie/${this.movie.id}`])
   }
 }

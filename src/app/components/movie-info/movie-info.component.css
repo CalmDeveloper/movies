@@ -1,56 +1,92 @@
-.movieInfo{
+.movieInfo {
   display: flex;
   flex-direction: row;
   justify-content: center;
-  height: 760px;
+  align-items: center;
+  min-height: 85%;
+  gap: 50px;
+  margin: 25px;
+  padding: 25px;
+  box-shadow: rgba(0, 0, 0, 0.16) 0 3px 6px, rgba(0, 0, 0, 0.23) 0 3px 6px;
 
-  .poster>img {
+  .poster > img {
     border-radius: 10px;
-    margin-top: 55px;
-    margin-left: 50px;
     width: 450px;
   }
-  .wrapper{
+  @media (max-width: 1000px) {
+    .poster > img {
+      width: 350px;
+    }
+  }
+  @media (max-width: 850px) {
+    .poster > img {
+      width: 300px;
+    }
+  }
+
+  @media (max-width: 720px) {
+    .poster > img {
+      width: 240px;
+    }
+    .wrapper h1 {
+      text-align: center;
+      width: 100%;
+      margin-top: 0;
+      margin-bottom: 20px;
+    }
+  }
+
+  .wrapper {
     display: flex;
+    gap: 5px;
     flex-direction: column;
     align-items: flex-start;
-    padding-top: 80px;
-    padding-left: 50px;
-    padding-right: 50px;
-    h1{
+    h1 {
       margin-bottom: 5px;
       color: blue;
       padding-bottom: 0;
     }
-    .rating{
+
+    .rating {
       display: flex;
       justify-content: center;
       align-items: center;
-      img{
+
+      img {
         margin-left: 15px;
         height: 25px;
       }
     }
 
     .mediumText {
-      font-size: 22px;
+      font-size: 20px;
       padding-top: 5px;
-      span{
+
+      span {
         color: #ffaa00;
         font-weight: bolder;
       }
     }
-    .tagline{
+
+    .tagline {
       font-family: "Bookman Old Style", serif;
-      font-size: 24px;
+      font-size: 22px;
       color: #ab1918;
       margin-top: 20px;
       font-weight: bolder;
     }
-    .overview{
+
+    .overview {
       margin-top: 10px;
       font-family: "Constantia", serif;
-      font-size: 24px;
+      font-size: 20px;
     }
   }
 }
+@media (max-width: 700px) {
+  .movieInfo {
+    gap: 20px;
+    flex-direction: column;
+  }
+}
+

@@ -1,8 +1,9 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {urls} from "../constants";
 import {Observable} from "rxjs";
-import {IAllMoviesData} from "../interfaces";
+import {IAllMoviesData, IGenresData, IMovieDetails} from "../interfaces";
+import {ICountry} from "../interfaces/i-country";
 
 @Injectable({
   providedIn: 'root'
@@ -15,22 +16,25 @@ export class MoviesService {
     this.httpClient = httpClient;
   }
 
-  getMovies(page = 1, with_genres = '', sort_by = ''): Observable<IAllMoviesData> {
-    // year: '2000'
-    const options = Object.assign({}, this.defaultOptions, {params: {page, with_genres, sort_by}});
-    return this.httpClient.get<IAllMoviesData>(urls.movie, options);
+  getMovies(params: any): Observable<IAllMoviesData> {
+    const options = Object.assign({}, this.defaultOptions, {params});
+    return this.httpClient.get<IAllMoviesData>(urls.movie, options)
   }
 
-  getGenres() {
-    return this.httpClient.get(urls.genres, this.defaultOptions);
+  getGenres(): Observable<IGenresData> {
+    return this.httpClient.get<IGenresData>(urls.genres, this.defaultOptions);
   }
 
-  details(id: string) {
-    return this.httpClient.get(`${urls.details}/${id}`, this.defaultOptions);
+  getCountries(): Observable<ICountry[]> {
+    return this.httpClient.get<ICountry[]>(urls.countries, this.defaultOptions);
   }
 
-  searchByKeywords(value: string, page: number) {
-    const options = Object.assign({}, this.defaultOptions, {params: {query: value, page}});
-    return this.httpClient.get(urls.keywords, options);
+  details(id: string | null): Observable<IMovieDetails> {
+    return this.httpClient.get<IMovieDetails>(`${urls.details}/${id}`, this.defaultOptions);
+  }
+
+  searchByKeywords(params: any): Observable<IAllMoviesData> {
+    const options = Object.assign({}, this.defaultOptions, {params});
+    return this.httpClient.get<IAllMoviesData>(urls.keywords, options);
   }
 }

@@ -1,3 +1,6 @@
+.notFoundPageImage {
+  margin-top: 10px;
+}
 .notFoundPageImage, img {
   width: 100%;
 }

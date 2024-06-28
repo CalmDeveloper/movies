@@ -8,8 +8,5 @@ import {Component, Input} from '@angular/core';
 export class StarRatingComponent {
   @Input()
   voteAverage: number;
-  stars: number[];
-  constructor() {
-    this.stars = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-  }
+  stars: number[] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 }
