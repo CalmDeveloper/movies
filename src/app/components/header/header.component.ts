@@ -58,14 +58,12 @@ export class HeaderComponent implements OnInit {
       this.clearFilters();
       if(params['query']) {
         this.search = params['query'];
-        if (!this.searchPanelStateOpened) this.onSearchBtnClick(true);
       } else  {
 
         if (this.searchPanelStateOpened) this.onSearchBtnClick(false);
       }
 
       if (params['sort_by'] || params['with_genres'] || params['with_origin_country'] || params['year']) {
-        if (!this.filterPanelStateOpened) this.onFilterBtnClick(true);
         if (params['sort_by']) this.selectedSortParam = params['sort_by'];
         if (params['with_genres']) this.selectedGenres = params['with_genres'].split(',').map((item: string) => +item);
         if (params['with_origin_country']) this.country = params['with_origin_country'];
@@ -95,8 +93,13 @@ export class HeaderComponent implements OnInit {
     const ENTER_KEY = 13;
     if ($event.which === ENTER_KEY) {
       const queryParams = $event.target.value && $event.target.value.length ? {page: 1,query: $event.target.value} : {page: 1};
-      this.router.navigate(['/'], {queryParams})
+      this.router.navigate(['movies'], {queryParams})
     }
+  }
+
+  onSearch(){
+    const queryParams = this.search && this.search.length ? {page: 1,query: this.search} : {page: 1};
+    this.router.navigate(['movies'], {queryParams})
   }
 
   onFilterBtnClick(value: boolean) {
@@ -104,7 +107,7 @@ export class HeaderComponent implements OnInit {
     if (this.filterPanelStateOpened) {
       this.filterPanel.style.maxHeight = this.filterPanel.scrollHeight + "px";
       this.filterPanel.style.overflow = 'visible'
-      this.filterPanel.style.margin = '30px 0 20px 0'
+      this.filterPanel.style.margin = '50px 0 30px 0'
       this.search = '';
       if (this.searchPanelStateOpened) this.onSearchBtnClick(false);
     } else {
@@ -119,7 +122,7 @@ export class HeaderComponent implements OnInit {
     if (this.selectedSortParam) defaultParams['sort_by'] = this.selectedSortParam;
     if (this.country) defaultParams['with_origin_country'] = this.country;
     if (this.year) defaultParams['year'] = this.year;
-    this.router.navigate(['/'], {queryParams: defaultParams})
+    this.router.navigate(['movies'], {queryParams: defaultParams})
   }
 
   clearFilters() {
@@ -127,5 +130,9 @@ export class HeaderComponent implements OnInit {
     this.selectedSortParam = null;
     this.selectedGenres = [];
     this.year = null;
+  }
+
+  clearAllParams(){
+    this.router.navigate(['movies'], {queryParams: {page: 1}})
   }
 }

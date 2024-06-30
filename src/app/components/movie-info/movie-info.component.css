@@ -11,17 +11,6 @@
 
   .poster > img {
     border-radius: 10px;
-    width: 450px;
-  }
-  @media (max-width: 1000px) {
-    .poster > img {
-      width: 350px;
-    }
-  }
-  @media (max-width: 850px) {
-    .poster > img {
-      width: 300px;
-    }
   }
 
   @media (max-width: 720px) {

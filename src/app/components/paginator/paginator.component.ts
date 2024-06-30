@@ -26,6 +26,6 @@ export class PaginatorComponent implements OnInit {
   }
 
   onPageChange($event: PageEvent) {
-    this.router.navigate(['/'], {queryParams: Object.assign({}, this.route.snapshot.queryParams, {page: +$event.pageIndex + 1})})
+    this.router.navigate(['movies'], {queryParams: Object.assign({}, this.route.snapshot.queryParams, {page: +$event.pageIndex + 1})})
   }
 }
