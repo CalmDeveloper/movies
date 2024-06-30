@@ -2,6 +2,6 @@
   <img src="{{link}}" (error)="onError($event)" alt="{{movie.title}}"/>
   <div class="wrapper">
     <span class="movie-title" matTooltip="{{movie.title}}" [matTooltipShowDelay]="300">{{movie.title}}</span>
-    <app-star-rating [voteAverage]="movie.vote_average"></app-star-rating>
+    <app-star-rating [voteAverage]="movie.vote_average" [isLarge]="false"></app-star-rating>
   </div>
 </div>

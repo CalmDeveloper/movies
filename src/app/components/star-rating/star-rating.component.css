@@ -1,12 +1,9 @@
 .star-wrapper {
-  height: 14px;
   display: flex;
   justify-content: center;
   align-items: center;
   .star {
     font-size: 14px;
-    height: 10px;
-    line-height: 10px;
     margin: 0;
     &.on {
       color: #000;
@@ -15,6 +12,10 @@
     &.off {
       color: #ccc;
     }
+  }
+
+  &.large .star {
+    font-size: 20px;
   }
 }
 

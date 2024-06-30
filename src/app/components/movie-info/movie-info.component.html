@@ -7,7 +7,7 @@
     <h1 *ngIf="movieDetails.title">{{movieDetails.title}}</h1>
 
     <div class="rating">
-      <app-star-rating [voteAverage]="movieDetails.vote_average"></app-star-rating>
+      <app-star-rating [voteAverage]="movieDetails.vote_average" [isLarge]="true"></app-star-rating>
       <a href="{{imdbLink}}"><img src="{{imdbLogo}}" alt="imdb logo"/></a>
     </div>
 
@@ -15,11 +15,11 @@
     <div *ngIf="country" class="mediumText">Country: <span>{{ country }}</span></div>
     <div *ngIf="movieDetails.runtime" class="mediumText">Ran time: <span>{{movieDetails.runtime}} min</span></div>
 
-    <div *ngIf="movieDetails.release_date" class="mediumText">Release date: <span>{{movieDetails.release_date}}</span></div>
-    <div *ngIf="movieDetails.budget !== 0" class="mediumText">Budget: <span>{{movieDetails.budget}}</span></div>
-    <div *ngIf="movieDetails.revenue !== 0" class="mediumText">Profit: <span>{{movieDetails.revenue}}</span></div>
+    <div *ngIf="movieDetails.release_date" class="mediumText">Release date: <span>{{movieDetails.release_date | date}}</span></div>
+    <div *ngIf="movieDetails.budget !== 0" class="mediumText">Budget: <span>{{movieDetails.budget}} $</span></div>
+    <div *ngIf="movieDetails.revenue !== 0" class="mediumText">Profit: <span>{{movieDetails.revenue}} $</span></div>
 
-    <div *ngIf="movieDetails.original_language" class="mediumText">Original language: <span>{{movieDetails.original_language}}</span></div>
+    <div *ngIf="movieDetails.original_language" class="mediumText">Original language: <span>{{movieDetails.original_language | uppercase}}</span></div>
     <div *ngIf="movieDetails.tagline" class="tagline">{{movieDetails.tagline}}</div>
     <div *ngIf="movieDetails.overview" class="overview">{{movieDetails.overview}}</div>
   </div>
